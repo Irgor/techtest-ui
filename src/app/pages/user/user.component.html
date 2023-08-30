@@ -1,0 +1,33 @@
+<div class="m-4">
+    <h3 class="h3">Customers</h3>
+
+    <form class="d-flex flex-column flex-sm-row align-items-sm-center justify-items-center" [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+
+        <div class="d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control ms-3" id="name" formControlName="name">
+        </div>
+
+        <div class="ms-sm-3 my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label">Status</label>
+            <select formControlName="active" class="form-select ms-3">
+                <option selected value="all">All</option>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+        </div>
+
+        <div class="ms-auto me-sm-4">
+            <button type="submit" class="btn btn-success">Search</button>
+        </div>
+    </form>
+
+</div>
+
+<button class="add-new" mat-fab color="basic" (click)="addNew()">
+    <mat-icon>add</mat-icon>
+</button>
+
+
+<app-users-table [columns]="columns" [users]="users"></app-users-table>

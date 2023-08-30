@@ -1,0 +1,75 @@
+<div class="m-4" *ngIf="user">
+    
+    <button color="basic" mat-mini-fab class="mb-3" (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <h3 *ngIf="create" class="h3">New Customer{{ user.id }}</h3>
+    <h3 *ngIf="!create" class="h3">Customer #{{ user.id }}</h3>
+
+    <form class="d-flex flex-column flex-sm-column align-items-center" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">Name</label>
+            <input type="text" class="form-control ms-3 col-3" id="name" formControlName="name" [(ngModel)]="user.name">
+        </div>
+
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="col-sm-3 alert-danger">
+            <div *ngIf="name?.errors?.['required']" class="text-danger">
+                Name is required.
+            </div>
+        </div>
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">Type</label>
+            <select formControlName="type" class="form-select ms-3 col-3" [(ngModel)]="user.type">
+                <option value="PF">PF</option>
+                <option value="PJ">PJ</option>
+            </select>
+        </div>
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">{{ user.type == 'PF' ? 'CPF' : 'CNPJ' }}</label>
+            <input type="text" class="form-control ms-3 col-3" id="name" formControlName="document"
+                [(ngModel)]="user.document">
+        </div>
+
+        <div *ngIf="document?.invalid && (document?.dirty || document?.touched)" class="col-sm-3 alert-danger">
+            <div *ngIf="document?.errors?.['required']" class="text-danger">
+                Document is required.
+            </div>
+        </div>
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">{{ user.type == 'PF' ? 'RG' : 'IE' }}</label>
+            <input type="text" class="form-control ms-3 col-3" id="name" formControlName="registry"
+                [(ngModel)]="user.registry">
+        </div>
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">Phone</label>
+            <input type="text" class="form-control ms-3 col-3" id="name" formControlName="phone"
+                [(ngModel)]="user.phone">
+        </div>
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">Birthday</label>
+            <input type="text" class="form-control ms-3 col-3" id="name" formControlName="birthday"
+                [(ngModel)]="user.birthday">
+        </div>
+
+        <div class="my-2 d-flex align-items-center col-sm-3">
+            <label for="name" class="form-label col-2">Status</label>
+            <select formControlName="active" [(ngModel)]="user.active" class="form-select ms-3 col-3">
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+        </div>
+
+        <div class="ms-auto me-sm-4">
+            <button type="submit" [disabled]="!form.valid" class="btn btn-success">{{create ? 'Create':
+                'Update'}}</button>
+        </div>
+    </form>
+
+</div>
