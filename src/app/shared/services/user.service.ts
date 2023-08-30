@@ -8,8 +8,8 @@ import { User, UserFilter } from '../models/user.model';
 })
 export class UserService {
 
-    // API_URL = 'https://techtest-api.onrender.com/api/';
-    API_URL = 'http://localhost:8080/api/';
+    API_URL = 'https://techtest-api.onrender.com/api/';
+    // API_URL = 'http://localhost:8080/api/';
 
     constructor(public http: HttpClient) { }
 
